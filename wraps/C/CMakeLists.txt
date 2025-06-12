@@ -130,6 +130,13 @@ endif()
 
 add_library(TissueForge::CLib ALIAS TissueForge_c)
 
+target_link_libraries(TissueForge_c PRIVATE gemmi_cpp)
+
+target_link_libraries(TissueForge_shared PRIVATE gemmi_cpp)
+
+target_link_libraries(TissueForge_obj PRIVATE gemmi_cpp)
+
+
 install(
   TARGETS TissueForge_c 
   EXPORT TissueForge_c_targets 

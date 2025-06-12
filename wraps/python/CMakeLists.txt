@@ -191,6 +191,8 @@ endmacro()
 
 TF_BUILD_PY_LIB(tissue_forge.i TissueForge_py tissue_forge tissue_forge)
 
+target_link_libraries(TissueForge_py PRIVATE gemmi_cpp)
+
 add_library(TissueForge::PythonLib ALIAS TissueForge_py)
 
 file(COPY __init__.py DESTINATION ${TF_PYPKG_DIR})

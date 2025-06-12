@@ -1,0 +1,5 @@
+# Ignore all .ini files
+*.ini
+
+# Ignore all .settings.json files
+*.settings.json

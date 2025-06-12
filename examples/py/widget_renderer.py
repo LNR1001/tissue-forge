@@ -35,6 +35,7 @@ tf.system.show_widget_time()
 tf.system.show_widget_particle_number()
 # tf.system.show_widget_bond_number()
 
+
 idx_noise = tf.system.add_widget_output_float(rforce.std, 'Noise')
 
 
@@ -94,3 +95,6 @@ tf.Logger.enableConsoleLogging(tf.Logger.ERROR)
 tf.system.set_widget_text_color('RED')
 tf.system.set_widget_background_color("blue")
 tf.run()
+
+with open("tissue-forge/source/io/1CRN.cif") as f:
+    tf.parseCifWithGemmi(f.read())

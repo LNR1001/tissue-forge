@@ -161,3 +161,5 @@ add_subdirectory(magnum-plugins EXCLUDE_FROM_ALL)
 set(WITH_UI ON CACHE BOOL "Ui support" FORCE)
 
 add_subdirectory(magnum-extras EXCLUD_FROM_ALL)
+
+add_subdirectory(gemmi)

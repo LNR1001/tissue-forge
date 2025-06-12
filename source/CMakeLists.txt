@@ -49,6 +49,8 @@ elseif(TF_WINDOWS)
 endif()
 add_library(TissueForge::MagnumLibs ALIAS TissueForge-magnum-interface)
 
+find_package(gemmi CONFIG REQUIRED)
+
 ################
 # Source setup #
 ################
@@ -80,6 +82,7 @@ set(
   io/tfThreeDFIO.cpp
   io/tfFIO.cpp
   io/tfIO.cpp
+  io/tf_gemmi_test.cpp
 
   event/tfEvent.cpp
   event/tfEventList.cpp
@@ -163,6 +166,8 @@ set(
   io/tfFIO.h
   io/tfIO.h
   io/tf_io.h
+  io/tf_gemmi_test.h
+  io/tf_gemmi_helper.h
 
   event/tfEvent.h
   event/tfEventList.h
@@ -358,9 +363,11 @@ target_link_libraries(
   MagnumPlugins::StbTrueTypeFont
   MagnumExtras::Ui
   mdcore
+  gemmi_cpp
 )
 target_link_libraries(
   TissueForge_obj PUBLIC 
+  gemmi_cpp
   GLFW::GLFW 
   ${GLFW_LIBRARIES} 
   LibSBML::LibSBML
@@ -400,6 +407,7 @@ set(TF_LIBDEPS_PUBLIC
 set(TF_LIBDEPS_PRIVATE
   mdcore
   TissueForge::MagnumLibs
+  gemmi
 )
 set(TF_INCLUDES_PUBLIC
   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
@@ -460,6 +468,8 @@ endif()
 # shared and static libraries built from the same object files
 add_library(TissueForge_shared SHARED ${TF_LIB_TARGETS})
 
+target_link_libraries(TissueForge_shared PRIVATE gemmi_cpp)
+
 target_compile_definitions(TissueForge_shared PRIVATE C_BUILDING_DLL)
 set_target_properties(TissueForge_shared 
   PROPERTIES
@@ -468,7 +478,7 @@ set_target_properties(TissueForge_shared
   OUTPUT_NAME tissue-forge
 )
 target_include_directories(TissueForge_shared PUBLIC ${TF_INCLUDES_PUBLIC})
-target_link_libraries(TissueForge_shared PRIVATE ${TF_LIBDEPS_PRIVATE})
+target_link_libraries(TissueForge_shared PRIVATE ${TF_LIBDEPS_PRIVATE} gemmi_cpp)
 target_link_libraries(TissueForge_shared PUBLIC ${TF_LIBDEPS_PUBLIC})
 
 if(TF_WITHCUDA)
