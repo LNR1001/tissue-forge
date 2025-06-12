@@ -18,3 +18,6 @@
 	path = extern/magnum-extras
 	url = https://github.com/mosra/magnum-extras.git
 	hexsha = 5db4c155f818b03ebe443663c048fa820a256c9f
+[submodule "extern/gemmi"]
+	path = extern/gemmi
+	url = https://github.com/project-gemmi/gemmi.git
