@@ -105,6 +105,7 @@
         "cinttypes": "cpp",
         "csignal": "cpp",
         "shared_mutex": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "tf_gemmi_test.h": "c"
     }
 }	

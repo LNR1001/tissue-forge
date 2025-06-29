@@ -29,6 +29,8 @@ from tissue_forge.tissue_forge import _io_toString as toString
 from tissue_forge.tissue_forge import _io_mapImportParticleId as mapImportParticleId
 from tissue_forge.tissue_forge import _io_mapImportParticleTypeId as mapImportParticleTypeId
 from tissue_forge.tissue_forge import _io_ThreeDFRenderData
+from tissue_forge.tissue_forge import _io_loadCifParticles as loadCifParticles
+
 
 class ThreeDFVertexData(_io_ThreeDFVertexData):
     pass

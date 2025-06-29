@@ -1,6 +1,6 @@
 /*******************************************************************************
  * This file is part of Tissue Forge.
- * Copyright (c) 2022-2024 ...
+ * Copyright (c) 2022-2024 T.J. Sego
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -16,22 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
- #ifndef _SOURCE_IO_TFGEMMI_H_
- #define _SOURCE_IO_TFGEMMI_H_
- 
- #include <string>
- #include "TissueForge_private.h"  // If you need TF macros/types
- 
- namespace TissueForge::io {
- 
- /**
-  * @brief Parse CIF data using Gemmi and optionally load it into Tissue Forge structures
-  *
-  * @param cifData The CIF data (in plain text form)
-  */
- CPPAPI_FUNC(void) parseCifWithGemmi(const std::string& cifData);
- 
- } // namespace TissueForge::io
- 
- #endif // _SOURCE_IO_TFGEMMI_H_
- 
+#ifndef _SOURCE_IO_TF_CIF_LOADER_H_
+#define _SOURCE_IO_TF_CIF_LOADER_H_
+
+#include <tf_port.h>
+#include <types/tf_types.h>
+
+#include <unordered_map>
+#include <vector>
+
+namespace TissueForge::io {
+
+/**
+ * @brief Parse CIF data and group atom coordinates by type
+ *
+ * @param cifData CIF file contents
+ * @return Mapping of atom type to coordinates
+ */
+CPPAPI_FUNC(std::unordered_map<std::string, std::vector<TissueForge::types::TVector3<float>>>)
+loadCifParticles(const std::string& cifData);
+
+} // namespace TissueForge::io
+
+#endif // _SOURCE_IO_TF_CIF_LOADER_H_

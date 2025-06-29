@@ -567,6 +567,11 @@ matrix_list_cast_add(TissueForge::types::TMatrix4, float,    vectorfMatrix4)
 %template(pairdVecMat3) std::pair<TissueForge::types::TVector3<double>, TissueForge::types::TMatrix3<double> >;
 %template(pairdVecMat4) std::pair<TissueForge::types::TVector4<double>, TissueForge::types::TMatrix4<double> >;
 
+%template(umapfStrVec3) std::unordered_map<std::string, TissueForge::types::TVector3<float> >;
+%template(umapdStrVec3) std::unordered_map<std::string, TissueForge::types::TVector3<double> >;
+%template(umapfStrVecVec3) std::unordered_map<std::string, std::vector<TissueForge::types::TVector3<float> > >;
+%template(umapdStrVecVec3) std::unordered_map<std::string, std::vector<TissueForge::types::TVector3<double> > >;
+
 
 #ifdef TF_FPTYPE_SINGLE
 %pythoncode %{

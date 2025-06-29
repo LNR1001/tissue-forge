@@ -82,7 +82,7 @@ set(
   io/tfThreeDFIO.cpp
   io/tfFIO.cpp
   io/tfIO.cpp
-  io/tf_gemmi_test.cpp
+  io/tf_cif_loader.cpp
 
   event/tfEvent.cpp
   event/tfEventList.cpp
@@ -166,8 +166,7 @@ set(
   io/tfFIO.h
   io/tfIO.h
   io/tf_io.h
-  io/tf_gemmi_test.h
-  io/tf_gemmi_helper.h
+  io/tf_cif_loader.h
 
   event/tfEvent.h
   event/tfEventList.h

@@ -27,7 +27,7 @@
 #include <io/tfIO.h>
 #include <io/tfFIO.h>
 #include <io/tf_io.h>
-#include <io/tf_gemmi_test.h>
+#include <io/tf_cif_loader.h>
 
 %}
 
@@ -57,7 +57,7 @@
 %rename(_io_mapImportParticleId) TissueForge::io::mapImportParticleId;
 %rename(_io_mapImportParticleTypeId) TissueForge::io::mapImportParticleTypeId;
 %rename(_io_ThreeDFRenderData) TissueForge::io::ThreeDFRenderData;
-%rename(_io_testGemmiParse) TissueForge::io::testGemmiParse;
+%rename(_io_loadCifParticles) TissueForge::io::loadCifParticles;
 
 %include <io/tfThreeDFRenderData.h>
 %include "tfThreeDFVertexData.i"
@@ -67,4 +67,4 @@
 %include "tfThreeDFStructure.i"
 %include <io/tfIO.h>
 %include <io/tfFIO.h>
-%include <io/tf_gemmi_test.h>
+%include <io/tf_cif_loader.h>
