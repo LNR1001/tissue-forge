@@ -114,11 +114,17 @@ tf.Logger.enableConsoleLogging(tf.Logger.DEBUG)
 
 
 cif_fp = path.join(path.dirname(path.abspath(__file__)), '..', '..', 'source',
-                   'io', '1CRN.cif')
+                   'io', '1a3n.cif')
 with open(cif_fp, 'r') as f:
     cif_data = f.read()
 
+print("CIF path:", cif_fp)
+print("\n".join(cif_data.splitlines()[:5]), "…")   # show first 5 lines
+
 atoms = tf.io.loadCifParticles(cif_data)
+print(type(atoms), atoms.keys())
+print("Count of element types:", atoms.size())
+
 print(atoms)
 for atom_type, coords in atoms.items():
     print(atom_type, len(coords))
