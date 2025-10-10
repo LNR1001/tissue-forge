@@ -58,6 +58,11 @@
 %rename(_io_mapImportParticleTypeId) TissueForge::io::mapImportParticleTypeId;
 %rename(_io_ThreeDFRenderData) TissueForge::io::ThreeDFRenderData;
 %rename(_io_loadCifParticles) TissueForge::io::loadCifParticles;
+%rename(_io_loadCifAtomsAndBonds) TissueForge::io::loadCifAtomsAndBonds;
+%rename(_io_cifAtomsSize) TissueForge::io::cifAtomsSize;
+%rename(_io_cifAtomAt) TissueForge::io::cifAtomAt;
+%rename(_io_cifBondsSize) TissueForge::io::cifBondsSize;
+%rename(_io_cifBondAt) TissueForge::io::cifBondAt;
 
 %include <io/tfThreeDFRenderData.h>
 %include "tfThreeDFVertexData.i"

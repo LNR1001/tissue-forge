@@ -30,6 +30,12 @@ from tissue_forge.tissue_forge import _io_mapImportParticleId as mapImportPartic
 from tissue_forge.tissue_forge import _io_mapImportParticleTypeId as mapImportParticleTypeId
 from tissue_forge.tissue_forge import _io_ThreeDFRenderData
 from tissue_forge.tissue_forge import _io_loadCifParticles as loadCifParticles
+from tissue_forge.tissue_forge import _io_loadCifAtomsAndBonds as loadCifAtomsAndBonds
+from tissue_forge.tissue_forge import _io_cifAtomsSize as cifAtomsSize
+from tissue_forge.tissue_forge import _io_cifAtomAt as cifAtomAt
+from tissue_forge.tissue_forge import _io_cifBondsSize as cifBondsSize
+from tissue_forge.tissue_forge import _io_cifBondAt as cifBondAt
+
 
 
 class ThreeDFVertexData(_io_ThreeDFVertexData):

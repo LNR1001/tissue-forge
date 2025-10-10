@@ -106,12 +106,39 @@
 
 """Example demonstrating io.loadCifParticles."""
 
+# import tissue_forge as tf
+# from os import path
+
+# tf.init(cutoff=3)
+# tf.Logger.enableConsoleLogging(tf.Logger.DEBUG)
+
+
+# cif_fp = path.join(path.dirname(path.abspath(__file__)), '..', '..', 'source',
+#                    'io', '1a3n.cif')
+# with open(cif_fp, 'r') as f:
+#     cif_data = f.read()
+
+# print("CIF path:", cif_fp)
+# print("\n".join(cif_data.splitlines()[:5]), "…")   # show first 5 lines
+
+# atoms = tf.io.loadCifAtomAndBonds(cif_data)
+# print(type(atoms), atoms.keys())
+# print("Count of element types:", atoms.size())
+
+# print(atoms)
+# for atom_type, coords in atoms.items():
+#     print(atom_type, len(coords))
+# print(atoms.size())
+
+# tf.show()
+
+
 import tissue_forge as tf
 from os import path
+from collections import Counter
 
 tf.init(cutoff=3)
 tf.Logger.enableConsoleLogging(tf.Logger.DEBUG)
-
 
 cif_fp = path.join(path.dirname(path.abspath(__file__)), '..', '..', 'source',
                    'io', '1a3n.cif')
@@ -119,15 +146,31 @@ with open(cif_fp, 'r') as f:
     cif_data = f.read()
 
 print("CIF path:", cif_fp)
-print("\n".join(cif_data.splitlines()[:5]), "…")   # show first 5 lines
+print("\n".join(cif_data.splitlines()[:5]), "…")   # show first 5 line
 
-atoms = tf.io.loadCifParticles(cif_data)
-print(type(atoms), atoms.keys())
-print("Count of element types:", atoms.size())
+# NEW API (returns CifStructureLite { atoms: [AtomLite], bonds: [BondLite] })
+s = tf.io.loadCifAtomsAndBonds(cif_data)
 
-print(atoms)
-for atom_type, coords in atoms.items():
-    print(atom_type, len(coords))
-print(atoms.size())
+print("\n=== Summary ===")
+print("Total atoms:", tf.io.cifAtomsSize(s))
+print("Total bonds:", tf.io.cifBondsSize(s))
+
+from collections import Counter
+elem_counts = Counter(tf.io.cifAtomAt(s, i).element for i in range(tf.io.cifAtomsSize(s)))
+print("Element types:", len(elem_counts))
+for elem in sorted(elem_counts):
+    print(f"{elem:>3}: {elem_counts[elem]}")
+
+if tf.io.cifAtomsSize(s) > 0:
+    a0 = tf.io.cifAtomAt(s, 0)
+    print("\nFirst atom:",
+          a0.element, a0.residue, a0.chain, a0.seq_id, a0.atom_name,
+          a0.pos.x(), a0.pos.y(), a0.pos.z())
+
+print("\nFirst bonds (up to 10):")
+limit = min(10, tf.io.cifBondsSize(s))
+for i in range(limit):
+    b = tf.io.cifBondAt(s, i)
+    print(f" {b.a} - {b.b}")
 
 tf.show()

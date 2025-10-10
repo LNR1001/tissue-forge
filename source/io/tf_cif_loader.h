@@ -27,6 +27,31 @@
 
 namespace TissueForge::io {
 
+// --- simple structs for returning atoms + bonds ---
+struct AtomLite {
+    std::string element;                  // _atom_site.type_symbol
+    types::TVector3<float> pos;           // Cartn_x, Cartn_y, Cartn_z
+    std::string residue;                  // _atom_site.label_comp_id
+    std::string chain;                    // _atom_site.label_asym_id
+    int seq_id = -1;                      // _atom_site.label_seq_id (or -1)
+    std::string atom_name;                // _atom_site.label_atom_id (e.g., CA, N)
+};
+
+struct BondLite { int a = -1; int b = -1; };   // indices into atoms[]
+
+struct CifStructureLite {
+    std::vector<AtomLite> atoms;
+    std::vector<BondLite> bonds;
+};
+
+CPPAPI_FUNC(size_t) cifAtomsSize(const CifStructureLite& s);
+CPPAPI_FUNC(const AtomLite&) cifAtomAt(const CifStructureLite& s, size_t i);
+CPPAPI_FUNC(size_t) cifBondsSize(const CifStructureLite& s);
+CPPAPI_FUNC(const BondLite&) cifBondAt(const CifStructureLite& s, size_t i);
+
+// NEW simple API (atoms + bonds). keeps your old API intact.
+CPPAPI_FUNC(CifStructureLite) loadCifAtomsAndBonds(const std::string& cifData);
+    
 /**
  * @brief Parse CIF data and group atom coordinates by type
  *
